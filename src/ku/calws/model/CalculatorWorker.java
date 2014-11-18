@@ -1,10 +1,11 @@
-package model;
+package ku.calws.model;
 
 import javax.swing.SwingWorker;
+import javax.swing.Timer;
+
+import ku.calws.view.Gui;
 
 import org.tempuri.CalculatorSoap;
-
-import view.Gui;
 /**
  * for send request to Webservice and return result
  * @author Termchai Sadsaengchan 5510546042
@@ -20,9 +21,11 @@ public class CalculatorWorker extends SwingWorker<String, Void> {
 	private String op;
 	private CalculatorSoap cal;
 	private Gui gui;
-	public CalculatorWorker(CalculatorSoap cal, Gui gui) {
+	private Timer timer;
+	public CalculatorWorker(CalculatorSoap cal, Gui gui, Timer timer) {
 		this.cal = cal;
 		this.gui = gui;
+		this.timer = timer;
 	}
 	
 	/**
@@ -56,7 +59,8 @@ public class CalculatorWorker extends SwingWorker<String, Void> {
 	 */
 	@Override
 	protected String doInBackground() throws Exception {
-
+		
+		
 		if (op == OPERATION_PLUS)
 			return(cal.add(a, b) + "");
 		else if (op == OPERATION_MINUS)
@@ -82,10 +86,12 @@ public class CalculatorWorker extends SwingWorker<String, Void> {
 	protected void done() {
 		super.done();
 		try {
+
 			gui.setResult(get());
+
+			timer.stop();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Error in workker");
 		}
 	}
 

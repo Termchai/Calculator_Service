@@ -1,4 +1,4 @@
-package view;
+package ku.calws.view;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

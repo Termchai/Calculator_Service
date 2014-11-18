@@ -1,4 +1,4 @@
-package view;
+package ku.calws.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -10,9 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.tempuri.CalculatorSoap;
+import ku.calws.controller.Controller;
 
-import Controller.Controller;
+import org.tempuri.CalculatorSoap;
 
 /**
  * Gui extends JFrame and add all Component
@@ -46,6 +46,7 @@ public class Gui extends JFrame {
 	private JComboBox<String> operCombo;
 	/* show string " = " */
 	private JLabel equalLabel;
+	private JLabel status;
 	/* button for calculate */
 	private JButton calculate;
 	
@@ -77,6 +78,7 @@ public class Gui extends JFrame {
 		field2.addKeyListener(new KeyAdapterInteger());
 		
 		/* Init East Panel component */
+		status = new JLabel("Idle");
 		eastPanel = new JPanel();
 		resultTextField = new JTextField();
 		resultTextField.setForeground(Color.RED);
@@ -96,6 +98,7 @@ public class Gui extends JFrame {
 		eastPanel.add(equalLabel);
 		eastPanel.add(resultTextField);
 		eastPanel.add(calculate);
+		eastPanel.add(status);
 		
 		/* add panel to JFrame */
 		add(westPanel);
@@ -109,13 +112,14 @@ public class Gui extends JFrame {
 	 */
 	private void initSize()
 	{
-		this.setPreferredSize(new Dimension(800, 90));
+		this.setPreferredSize(new Dimension(900, 90));
 		field1.setPreferredSize(new Dimension(140, 30));
 		field2.setPreferredSize(new Dimension(140, 30));
 		resultTextField.setPreferredSize(new Dimension(180, 30));
 		operCombo.setPreferredSize(new Dimension(50,30));
 		equalLabel.setPreferredSize(new Dimension(50,30));
 		calculate.setPreferredSize(new Dimension(120,30));
+		status.setPreferredSize(new Dimension(70, 30));
 	}
 	
 	/**
@@ -143,6 +147,7 @@ public class Gui extends JFrame {
 	public void setResult(String result)
 	{
 		resultTextField.setText(result);
+		setStatus("Idle");
 	}
 	
 	
@@ -154,5 +159,10 @@ public class Gui extends JFrame {
 	public void setField2(String text)
 	{
 		field2.setText(text);
+	}
+	
+	public void setStatus(String text)
+	{
+		status.setText(text);
 	}
 }

@@ -1,10 +1,10 @@
-package view;
+package ku.calws.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import org.tempuri.CalculatorSoap;
+import ku.calws.controller.Controller;
 
-import Controller.Controller;
+import org.tempuri.CalculatorSoap;
 
 /**
  * ActionListener of Calculate Button on Gui
